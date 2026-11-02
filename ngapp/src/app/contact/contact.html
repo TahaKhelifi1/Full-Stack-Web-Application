@@ -1,0 +1,14 @@
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit()">
+  <input type="text" name="name" [(ngModel)]="formData.name" placeholder="Name" required #name="ngModel" />
+  @if (name.invalid && name.touched) {
+    <small>Name is required</small>
+  }
+
+  <input type="email" name="email" [(ngModel)]="formData.email" placeholder="Email" required email #email="ngModel" />
+  @if (email.invalid && email.touched) {
+    <small>Enter a valid email</small>
+  }
+
+  <button type="submit" [disabled]="contactForm.invalid">Submit</button>
+</form>

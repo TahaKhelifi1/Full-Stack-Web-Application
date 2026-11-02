@@ -1,0 +1,29 @@
+<div class="container my-4">
+  <div class="mb-4">
+    <a routerLink="/products" class="back-link">&larr; Back to catalogue</a>
+  </div>
+
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  } @else if (product(); as p) {
+    <div class="row align-items-start g-4">
+      <div class="col-md-5 col-lg-4">
+        <div class="product-detail-image-box">
+          <img [src]="p.thumbnail" [alt]="p.title" class="product-detail-image" />
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <span class="category-badge">{{ getCategoryName(p.category) }}</span>
+        <h1 class="product-detail-title">{{ p.title }}</h1>
+        <div class="product-detail-price">${{ p.price }}</div>
+        <p class="product-detail-description">{{ p.description }}</p>
+      </div>
+    </div>
+  }
+</div>

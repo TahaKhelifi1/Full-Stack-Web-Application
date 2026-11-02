@@ -1,0 +1,17 @@
+.catalogue-title {
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: #212529;
+  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 480px;
+}
+
+.search-input {
+  flex: 1;
+}

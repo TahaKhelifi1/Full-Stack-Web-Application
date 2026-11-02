@@ -1,0 +1,36 @@
+.app-header {
+  background-color: #cb2435;
+  padding: 0.85rem 0;
+  width: 100%;
+}
+
+.app-brand {
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: -0.3px;
+}
+
+.app-brand:hover {
+  color: #ffffff;
+}
+
+.app-nav {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.app-nav a {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+.app-nav a:hover,
+.app-nav a.active {
+  color: #ffffff;
+}

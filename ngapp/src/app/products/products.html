@@ -1,0 +1,55 @@
+<div class="container my-4">
+  <h1 class="catalogue-title">Product Catalogue</h1>
+
+  <!-- Search bar -->
+  <div class="search-bar mb-4">
+    <input
+      type="text"
+      class="form-control search-input"
+      placeholder="Search products…"
+      #searchInput
+      (keyup.enter)="search(searchInput.value)"
+    />
+    <button class="btn btn-primary" (click)="search(searchInput.value)">Search</button>
+    @if (query()) {
+      <button class="btn btn-outline-secondary" (click)="searchInput.value=''; search('')">Clear</button>
+    }
+  </div>
+
+  @if (loading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  } @else if (error()) {
+    <div class="alert alert-danger">{{ error() }}</div>
+  } @else {
+    <p class="text-muted small mb-3">{{ total() }} products found</p>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+      @for (p of products(); track p.id) {
+        <div class="col">
+          <app-product-card [product]="p" />
+        </div>
+      }
+      @empty {
+        <div class="col-12">
+          <p class="text-muted">No products found.</p>
+        </div>
+      }
+    </div>
+
+    @if (total() > limit) {
+      <div class="d-flex justify-content-between align-items-center mt-4 pt-2">
+        <button class="btn btn-outline-secondary" (click)="previous()" [disabled]="skip() === 0">
+          Previous
+        </button>
+        <span class="text-muted">{{ skip() + 1 }} - {{ skip() + products().length }} / {{ total() }}</span>
+        <button class="btn btn-outline-secondary" (click)="next()" [disabled]="skip() + limit >= total()">
+          Next
+        </button>
+      </div>
+    }
+  }
+
+</div>
